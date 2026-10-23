@@ -109,9 +109,10 @@ export function AdminSidebar({ userEmail }: AdminSidebarProps) {
         </p>
 
         {menuItems.map((item) => {
+          const currentPath = pathname || "";
           const isActive = item.exact
-            ? pathname === item.href
-            : pathname.startsWith(item.href);
+            ? currentPath === item.href
+            : currentPath.startsWith(item.href);
           const Icon = item.icon;
 
           return (

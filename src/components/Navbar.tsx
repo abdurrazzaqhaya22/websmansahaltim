@@ -71,10 +71,11 @@ export function Navbar({ specialLinks = [] }: NavbarProps) {
           {/* Desktop Navigation (Coda Pill Tabs) */}
           <nav className="hidden lg:flex items-center gap-1 p-1 rounded-full bg-slate-50 border border-slate-200/60">
             {navLinks.map((link) => {
+              const currentPath = pathname || "";
               const isActive =
                 link.href === "/"
-                  ? pathname === "/"
-                  : pathname.startsWith(link.href);
+                  ? currentPath === "/"
+                  : currentPath.startsWith(link.href);
               return (
                 <Link
                   key={link.href}
@@ -172,10 +173,11 @@ export function Navbar({ specialLinks = [] }: NavbarProps) {
       {isOpen && (
         <div className="lg:hidden bg-white border-b border-slate-200 px-4 pt-3 pb-6 space-y-2">
           {navLinks.map((link) => {
+            const currentPath = pathname || "";
             const isActive =
               link.href === "/"
-                ? pathname === "/"
-                : pathname.startsWith(link.href);
+                ? currentPath === "/"
+                : currentPath.startsWith(link.href);
             return (
               <Link
                 key={link.href}
