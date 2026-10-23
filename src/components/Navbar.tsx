@@ -26,6 +26,11 @@ export function Navbar({ specialLinks = [] }: NavbarProps) {
     { label: "Galeri", href: "/galeri" },
   ];
 
+  const closeMenu = () => {
+    setIsOpen(false);
+    setDropdownOpen(false);
+  };
+
   // Close dropdown on outside click
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -37,21 +42,13 @@ export function Navbar({ specialLinks = [] }: NavbarProps) {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  // Close mobile menu and dropdown on route change without triggering cascading effect render
-  const [prevPathname, setPrevPathname] = useState(pathname);
-  if (prevPathname !== pathname) {
-    setPrevPathname(pathname);
-    setIsOpen(false);
-    setDropdownOpen(false);
-  }
-
   return (
     <header className="sticky top-0 z-40 w-full bg-white/80 backdrop-blur-md border-b border-slate-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           
           {/* Logo & School Identity */}
-          <Link href="/" className="flex items-center gap-3.5 group">
+          <Link href="/" onClick={closeMenu} className="flex items-center gap-3.5 group">
             <div className="relative w-10 h-10 shrink-0 p-0.5 bg-white rounded-full border border-slate-200 overflow-hidden">
               <Image
                 src="/logo.png"
@@ -82,6 +79,7 @@ export function Navbar({ specialLinks = [] }: NavbarProps) {
                 <Link
                   key={link.href}
                   href={link.href}
+                  onClick={closeMenu}
                   className={`px-4 py-2 text-xs font-semibold rounded-full transition-all duration-200 ${
                     isActive
                       ? "bg-white text-slate-900 font-bold border border-slate-200/80"
@@ -131,6 +129,7 @@ export function Navbar({ specialLinks = [] }: NavbarProps) {
                         href={link.url_tujuan}
                         target="_blank"
                         rel="noopener noreferrer"
+                        onClick={closeMenu}
                         className="flex items-center justify-between px-4 py-2 text-xs font-medium text-slate-700 hover:bg-slate-50 hover:text-slate-900 transition-colors group"
                       >
                         <span className="flex items-center gap-2.5">
@@ -149,6 +148,7 @@ export function Navbar({ specialLinks = [] }: NavbarProps) {
 
             <Link
               href="/admin"
+              onClick={closeMenu}
               className="text-xs font-semibold text-white bg-slate-900 hover:bg-slate-800 px-5 py-2.5 rounded-full transition-all"
             >
               Portal Admin
@@ -180,6 +180,7 @@ export function Navbar({ specialLinks = [] }: NavbarProps) {
               <Link
                 key={link.href}
                 href={link.href}
+                onClick={closeMenu}
                 className={`block px-4 py-2.5 text-sm font-semibold rounded-full ${
                   isActive
                     ? "bg-slate-900 text-white"
@@ -202,6 +203,7 @@ export function Navbar({ specialLinks = [] }: NavbarProps) {
                   href={link.url_tujuan}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={closeMenu}
                   className="flex items-center justify-between px-4 py-2.5 text-xs font-semibold text-slate-800 bg-slate-50 border border-slate-200 rounded-full"
                 >
                   <span className="flex items-center gap-2">
@@ -216,6 +218,7 @@ export function Navbar({ specialLinks = [] }: NavbarProps) {
             <div className="mt-4 pt-3 border-t border-slate-100">
               <Link
                 href="/admin"
+                onClick={closeMenu}
                 className="block text-center text-xs font-bold py-3 px-4 bg-slate-900 text-white rounded-full"
               >
                 Portal Admin
