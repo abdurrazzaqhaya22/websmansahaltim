@@ -10,7 +10,7 @@ export const metadata = {
   description: "Daftar pendidik dan staf profesional SMA Negeri 1 Halmahera Timur.",
 };
 
-export const revalidate = 60;
+export const dynamic = "force-dynamic";
 
 export default async function GuruStafPage() {
   const supabase = await createClient();

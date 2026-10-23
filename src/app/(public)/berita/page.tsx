@@ -10,7 +10,7 @@ export const metadata = {
   description: "Kabar berita, prestasi, dan pengumuman resmi SMA Negeri 1 Halmahera Timur.",
 };
 
-export const revalidate = 60;
+export const dynamic = "force-dynamic";
 
 interface BeritaPageProps {
   searchParams: Promise<{

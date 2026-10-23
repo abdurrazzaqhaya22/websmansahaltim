@@ -3,46 +3,49 @@ import { createClient } from "@/lib/supabase/server";
 import { AnimatedHomePage } from "@/components/AnimatedHomePage";
 import type { Settings, Article, GalleryItem } from "@/types/database";
 
-export const revalidate = 60;
+export const dynamic = "force-dynamic";
 
 export default async function HomePage() {
-  const supabase = await createClient();
+  let settings: Settings | null = null;
+  let articles: Article[] = [];
+  let announcements: Article[] = [];
+  let gallery: GalleryItem[] = [];
 
-  // Fetch settings sekolah & kepsek
-  const { data: settingsData } = await supabase
-    .from("settings")
-    .select("*")
-    .limit(1)
-    .maybeSingle();
+  try {
+    const supabase = await createClient();
 
-  // Fetch 6 artikel terbaru
-  const { data: articlesData } = await supabase
-    .from("articles")
-    .select("*")
-    .eq("is_published", true)
-    .order("created_at", { ascending: false })
-    .limit(6);
+    // Fetch in parallel
+    const [settingsRes, articlesRes, announcementsRes, galleryRes] =
+      await Promise.all([
+        supabase.from("settings").select("*").limit(1).maybeSingle(),
+        supabase
+          .from("articles")
+          .select("*")
+          .eq("is_published", true)
+          .order("created_at", { ascending: false })
+          .limit(6),
+        supabase
+          .from("articles")
+          .select("*")
+          .eq("tipe", "pengumuman")
+          .eq("is_published", true)
+          .order("created_at", { ascending: false })
+          .limit(2),
+        supabase
+          .from("gallery")
+          .select("*")
+          .order("created_at", { ascending: false })
+          .limit(5),
+      ]);
 
-  // Fetch 2 pengumuman penting untuk Kotak 3 Bento Grid
-  const { data: announcementsData } = await supabase
-    .from("articles")
-    .select("*")
-    .eq("tipe", "pengumuman")
-    .eq("is_published", true)
-    .order("created_at", { ascending: false })
-    .limit(2);
-
-  // Fetch 5 foto galeri
-  const { data: galleryData } = await supabase
-    .from("gallery")
-    .select("*")
-    .order("created_at", { ascending: false })
-    .limit(5);
-
-  const settings = settingsData as Settings | null;
-  const articles = (articlesData as Article[]) || [];
-  const announcements = (announcementsData as Article[]) || [];
-  const gallery = (galleryData as GalleryItem[]) || [];
+    if (settingsRes.data) settings = settingsRes.data as Settings;
+    if (articlesRes.data) articles = articlesRes.data as Article[];
+    if (announcementsRes.data)
+      announcements = announcementsRes.data as Article[];
+    if (galleryRes.data) gallery = galleryRes.data as GalleryItem[];
+  } catch (err) {
+    console.error("HomePage fetch error:", err);
+  }
 
   return (
     <AnimatedHomePage

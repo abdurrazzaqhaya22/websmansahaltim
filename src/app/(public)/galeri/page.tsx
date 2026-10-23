@@ -10,7 +10,7 @@ export const metadata = {
   description: "Dokumentasi visual kegiatan belajar mengajar dan fasilitas SMA Negeri 1 Halmahera Timur.",
 };
 
-export const revalidate = 60;
+export const dynamic = "force-dynamic";
 
 export default async function GaleriPage() {
   const supabase = await createClient();

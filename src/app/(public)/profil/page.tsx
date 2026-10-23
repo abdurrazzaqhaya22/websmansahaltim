@@ -10,7 +10,7 @@ export const metadata = {
   description: "Sejarah berdirinya sekolah, visi misi, profil kepala sekolah, dan tujuan mutu SMA Negeri 1 Halmahera Timur.",
 };
 
-export const revalidate = 60;
+export const dynamic = "force-dynamic";
 
 export default async function ProfilPage() {
   const supabase = await createClient();
