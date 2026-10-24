@@ -220,46 +220,52 @@ export function AnimatedHomePage({
       </section>
 
       {/* ========================================================
-          2. METRIC STRIP (Flat, Clean Hairline Grid)
+          2. METRIC STRIP (Bento Cards Style)
          ======================================================== */}
-      <section className="border-y border-slate-100 bg-white py-12 sm:py-16">
+      <section className="bg-white py-8 sm:py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-12 sm:gap-y-16 md:gap-y-12 md:divide-x divide-slate-100">
-            <div className="text-center pb-6 md:pb-0">
-              <span className="block text-4xl md:text-5xl font-black text-slate-900 tracking-tight">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6">
+            
+            {/* Kartu 1: Tahun Berdiri */}
+            <div className="bg-slate-50/70 border border-slate-200 rounded-3xl p-5 md:p-8 flex flex-col items-center justify-center text-center hover:bg-slate-100 transition-colors">
+              <span className="block text-3xl md:text-4xl lg:text-5xl font-extrabold text-slate-900 mb-2 tracking-tight">
                 1989
               </span>
-              <span className="text-xs text-slate-500 mt-2 block">
+              <span className="text-[11px] md:text-sm text-slate-500 leading-snug">
                 Berdiri Sejak (SMA PGRI Buli)
               </span>
             </div>
 
-            <div className="text-center pb-6 md:pb-0 md:pl-6">
-              <span className="block text-4xl md:text-5xl font-black text-slate-900 tracking-tight">
+            {/* Kartu 2: Akreditasi */}
+            <div className="bg-slate-50/70 border border-slate-200 rounded-3xl p-5 md:p-8 flex flex-col items-center justify-center text-center hover:bg-slate-100 transition-colors">
+              <span className="block text-3xl md:text-4xl lg:text-5xl font-extrabold text-slate-900 mb-2 tracking-tight">
                 {settings?.akreditasi || "A"}
               </span>
-              <span className="text-xs text-slate-500 mt-2 block">
+              <span className="text-[11px] md:text-sm text-slate-500 leading-snug">
                 Akreditasi BAN-S/M Unggul
               </span>
             </div>
 
-            <div className="text-center pb-6 md:pb-0 md:pl-6">
-              <span className="block text-4xl md:text-5xl font-black text-slate-900 tracking-tight font-mono">
+            {/* Kartu 3: NPSN (Skala font bertingkat agar aman di HP) */}
+            <div className="bg-slate-50/70 border border-slate-200 rounded-3xl p-5 md:p-8 flex flex-col items-center justify-center text-center hover:bg-slate-100 transition-colors">
+              <span className="block text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-slate-900 mb-2 tracking-tight font-mono">
                 {settings?.npsn || "60201362"}
               </span>
-              <span className="text-xs text-slate-500 mt-2 block">
+              <span className="text-[11px] md:text-sm text-slate-500 leading-snug">
                 NPSN Resmi Kemendikbud
               </span>
             </div>
 
-            <div className="text-center pb-6 md:pb-0 md:pl-6">
-              <span className="block text-4xl md:text-5xl font-black text-slate-900 tracking-tight">
+            {/* Kartu 4: Dimensi Profil */}
+            <div className="bg-slate-50/70 border border-slate-200 rounded-3xl p-5 md:p-8 flex flex-col items-center justify-center text-center hover:bg-slate-100 transition-colors">
+              <span className="block text-3xl md:text-4xl lg:text-5xl font-extrabold text-slate-900 mb-2 tracking-tight">
                 8 Dimensi
               </span>
-              <span className="text-xs text-slate-500 mt-2 block">
+              <span className="text-[11px] md:text-sm text-slate-500 leading-snug">
                 Profil Kelulusan Siswa
               </span>
             </div>
+
           </div>
         </div>
       </section>
