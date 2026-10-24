@@ -99,8 +99,8 @@ export function AnimatedHomePage({
       {/* ========================================================
           1. HERO SECTION (Staggered Text Reveal & Coda Layout)
          ======================================================== */}
-      <section className="pt-20 pb-20 md:pt-32 md:pb-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto text-center space-y-8">
+      <section className="pt-16 pb-16 md:pt-32 md:pb-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto text-center space-y-8 flex flex-col items-center">
           
           {/* Motto Kicker Badge */}
           <motion.div
@@ -117,26 +117,26 @@ export function AnimatedHomePage({
             variants={heroContainerVariants}
             initial="hidden"
             animate="visible"
-            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tighter text-slate-900 leading-[1.05]"
+            className="text-center text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tighter text-slate-900 leading-[1.08] sm:leading-[1.05]"
           >
-            <span className="inline-block">
+            <span className="inline-block text-center">
               {heroHeadlineRow1.map((word, idx) => (
                 <motion.span
                   key={idx}
                   variants={heroWordVariants}
-                  className="inline-block mr-[0.22em] last:mr-0"
+                  className="inline-block mr-[0.22em] last:mr-0 text-center"
                 >
                   {word}
                 </motion.span>
               ))}
             </span>{" "}
             <br className="hidden sm:inline" />
-            <span className="inline-block text-slate-400 font-extrabold">
+            <span className="inline-block text-slate-400 font-extrabold text-center">
               {heroHeadlineRow2.map((word, idx) => (
                 <motion.span
                   key={idx}
                   variants={heroWordVariants}
-                  className="inline-block mr-[0.22em] last:mr-0"
+                  className="inline-block mr-[0.22em] last:mr-0 text-center"
                 >
                   {word}
                 </motion.span>
@@ -149,7 +149,7 @@ export function AnimatedHomePage({
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: codaEase, delay: 0.55 }}
-            className="text-lg sm:text-xl text-slate-500 max-w-2xl mx-auto font-normal leading-relaxed"
+            className="text-center text-base sm:text-lg md:text-xl text-slate-500 max-w-2xl mx-auto font-normal leading-relaxed"
           >
             Portal resmi SMA Negeri 1 Halmahera Timur. Ekosistem belajar modern yang berakar pada integritas, budi pekerti luhur, dan daya saing di Maluku Utara.
           </motion.p>
@@ -159,22 +159,26 @@ export function AnimatedHomePage({
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: codaEase, delay: 0.65 }}
-            className="pt-2 flex flex-wrap items-center justify-center gap-4"
+            className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-4 w-full"
           >
-            <Link
-              href="/profil"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-slate-900 text-white hover:bg-slate-800 text-sm font-semibold rounded-full transition-all group"
-            >
-              <span>Jelajahi Profil Sekolah</span>
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </Link>
+            <div className="flex justify-center w-full sm:w-auto">
+              <Link
+                href="/profil"
+                className="w-full sm:w-auto text-center inline-flex items-center justify-center gap-2 px-8 py-4 bg-slate-900 text-white hover:bg-slate-800 text-sm font-semibold rounded-full transition-all group"
+              >
+                <span>Jelajahi Profil Sekolah</span>
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </div>
 
-            <Link
-              href="/berita"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-white border border-slate-300 text-slate-800 hover:bg-slate-50 text-sm font-semibold rounded-full transition-all"
-            >
-              <span>Warta & Pengumuman</span>
-            </Link>
+            <div className="flex justify-center w-full sm:w-auto">
+              <Link
+                href="/berita"
+                className="w-full sm:w-auto text-center inline-flex items-center justify-center gap-2 px-8 py-4 bg-white border border-slate-300 text-slate-800 hover:bg-slate-50 text-sm font-semibold rounded-full transition-all"
+              >
+                <span>Warta & Pengumuman</span>
+              </Link>
+            </div>
           </motion.div>
         </div>
 
@@ -183,10 +187,10 @@ export function AnimatedHomePage({
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: codaEase, delay: 0.75 }}
-          className="mt-16 md:mt-24 max-w-6xl mx-auto"
+          className="mt-12 sm:mt-16 md:mt-24 max-w-6xl mx-auto"
         >
           <div className="relative rounded-[2rem] overflow-hidden border border-slate-200 bg-slate-50 p-2 sm:p-3">
-            <div className="relative w-full h-[360px] sm:h-[480px] md:h-[580px] rounded-[1.5rem] overflow-hidden">
+            <div className="relative w-full h-[320px] sm:h-[480px] md:h-[580px] rounded-[1.5rem] overflow-hidden">
               <Image
                 src="/hero-bg.jpg"
                 alt="Siswa-Siswi SMA Negeri 1 Halmahera Timur"
@@ -218,41 +222,41 @@ export function AnimatedHomePage({
       {/* ========================================================
           2. METRIC STRIP (Flat, Clean Hairline Grid)
          ======================================================== */}
-      <section className="border-y border-slate-100 bg-white py-12">
+      <section className="border-y border-slate-100 bg-white py-12 sm:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 divide-y md:divide-y-0 md:divide-x divide-slate-100">
-            <div className="text-center pt-4 md:pt-0">
-              <span className="block text-4xl sm:text-5xl font-black text-slate-900 tracking-tighter">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-12 sm:gap-y-16 md:gap-y-12 md:divide-x divide-slate-100">
+            <div className="text-center pb-6 md:pb-0">
+              <span className="block text-4xl md:text-5xl font-black text-slate-900 tracking-tight">
                 1989
               </span>
-              <span className="text-xs text-slate-500 mt-1 block">
+              <span className="text-xs text-slate-500 mt-2 block">
                 Berdiri Sejak (SMA PGRI Buli)
               </span>
             </div>
 
-            <div className="text-center pt-4 md:pt-0 md:pl-6">
-              <span className="block text-4xl sm:text-5xl font-black text-slate-900 tracking-tighter">
+            <div className="text-center pb-6 md:pb-0 md:pl-6">
+              <span className="block text-4xl md:text-5xl font-black text-slate-900 tracking-tight">
                 {settings?.akreditasi || "A"}
               </span>
-              <span className="text-xs text-slate-500 mt-1 block">
+              <span className="text-xs text-slate-500 mt-2 block">
                 Akreditasi BAN-S/M Unggul
               </span>
             </div>
 
-            <div className="text-center pt-4 md:pt-0 md:pl-6">
-              <span className="block text-4xl sm:text-5xl font-black text-slate-900 tracking-tighter font-mono">
+            <div className="text-center pb-6 md:pb-0 md:pl-6">
+              <span className="block text-4xl md:text-5xl font-black text-slate-900 tracking-tight font-mono">
                 {settings?.npsn || "60201362"}
               </span>
-              <span className="text-xs text-slate-500 mt-1 block">
+              <span className="text-xs text-slate-500 mt-2 block">
                 NPSN Resmi Kemendikbud
               </span>
             </div>
 
-            <div className="text-center pt-4 md:pt-0 md:pl-6">
-              <span className="block text-4xl sm:text-5xl font-black text-slate-900 tracking-tighter">
+            <div className="text-center pb-6 md:pb-0 md:pl-6">
+              <span className="block text-4xl md:text-5xl font-black text-slate-900 tracking-tight">
                 8 Dimensi
               </span>
-              <span className="text-xs text-slate-500 mt-1 block">
+              <span className="text-xs text-slate-500 mt-2 block">
                 Profil Kelulusan Siswa
               </span>
             </div>
@@ -300,37 +304,38 @@ export function AnimatedHomePage({
               </div>
 
               {/* Editorial Portrait Layout */}
-              <div className="flex flex-col sm:flex-row items-start gap-5">
+              <div className="flex flex-col md:flex-row items-center md:items-start md:gap-6 w-full">
                 {/* Portrait Photo */}
-                <div className="relative w-28 sm:w-32 aspect-[3/4] rounded-2xl overflow-hidden border border-slate-200 bg-slate-100 shrink-0 shadow-xs">
+                <div className="relative w-full aspect-[4/5] rounded-2xl overflow-hidden border border-slate-200 bg-slate-100 mb-6 md:w-1/3 md:mb-0 shrink-0 shadow-xs">
                   <Image
                     src={kepsekPhoto}
                     alt={kepsekName}
                     fill
-                    sizes="(max-width: 640px) 112px, 128px"
-                    className="object-cover object-top"
+                    sizes="(max-width: 768px) 100vw, 240px"
+                    className="w-full aspect-[4/5] object-cover rounded-2xl mb-6 md:w-1/3 md:mb-0"
+                    priority
                   />
                 </div>
 
                 {/* Info & Kutipan */}
-                <div className="flex-1 space-y-2.5">
+                <div className="flex-1 space-y-3 text-center md:text-left w-full">
                   <div>
-                    <h4 className="text-base sm:text-lg font-bold text-slate-900 leading-tight">
+                    <h4 className="text-lg sm:text-xl font-bold text-slate-900 leading-tight">
                       {kepsekName}
                     </h4>
-                    <p className="text-xs font-medium text-slate-500 mt-0.5">
+                    <p className="text-xs font-semibold text-slate-500 mt-1 uppercase tracking-wider">
                       Kepala SMAN 1 Halmahera Timur
                     </p>
                   </div>
 
-                  <blockquote className="text-sm text-slate-600 leading-relaxed font-normal">
+                  <blockquote className="text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
                     &ldquo;{sambutanShort}&rdquo;
                   </blockquote>
                 </div>
               </div>
             </div>
 
-            <div className="pt-6 mt-6 border-t border-slate-100">
+            <div className="pt-6 mt-6 border-t border-slate-100 flex justify-center md:justify-start">
               <Link
                 href="/profil#sambutan"
                 className="inline-flex items-center gap-2 text-xs font-bold text-slate-900 hover:text-slate-600 transition-colors group"
