@@ -28,6 +28,14 @@ export const metadata: Metadata = {
     "SMA Maluku Utara",
     "Pendidikan Halmahera Timur",
   ],
+  icons: {
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/icon.png", type: "image/png", sizes: "192x192" },
+    ],
+    shortcut: "/favicon.ico",
+    apple: "/apple-icon.png",
+  },
 };
 
 export default function RootLayout({
