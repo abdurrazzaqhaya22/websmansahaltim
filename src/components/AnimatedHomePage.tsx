@@ -289,39 +289,45 @@ export function AnimatedHomePage({
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, ease: codaEase }}
-            className="lg:col-span-5 bg-white rounded-[2rem] p-8 sm:p-10 border border-slate-200 hover:border-slate-400 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between"
+            className="lg:col-span-5 bg-white rounded-[2rem] p-7 sm:p-9 border border-slate-200 hover:border-slate-400 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between"
           >
             <div className="space-y-6">
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between pb-4 border-b border-slate-100">
                 <span className="text-xs font-bold uppercase tracking-wider text-slate-400">
                   Sambutan Pimpinan
                 </span>
                 <span className="text-xs font-mono text-slate-400">Kepala Sekolah</span>
               </div>
 
-              <div className="flex items-center gap-4">
-                <div className="relative w-14 h-14 rounded-full overflow-hidden border border-slate-200 shrink-0 bg-slate-100">
+              {/* Editorial Portrait Layout */}
+              <div className="flex flex-col sm:flex-row items-start gap-5">
+                {/* Portrait Photo */}
+                <div className="relative w-28 sm:w-32 aspect-[3/4] rounded-2xl overflow-hidden border border-slate-200 bg-slate-100 shrink-0 shadow-xs">
                   <Image
                     src={kepsekPhoto}
                     alt={kepsekName}
                     fill
-                    sizes="56px"
-                    className="object-cover"
+                    sizes="(max-width: 640px) 112px, 128px"
+                    className="object-cover object-top"
                   />
                 </div>
-                <div>
-                  <h4 className="text-base font-bold text-slate-900 leading-tight">
-                    {kepsekName}
-                  </h4>
-                  <p className="text-xs text-slate-500 mt-0.5">
-                    Kepala SMAN 1 Halmahera Timur
-                  </p>
+
+                {/* Info & Kutipan */}
+                <div className="flex-1 space-y-2.5">
+                  <div>
+                    <h4 className="text-base sm:text-lg font-bold text-slate-900 leading-tight">
+                      {kepsekName}
+                    </h4>
+                    <p className="text-xs font-medium text-slate-500 mt-0.5">
+                      Kepala SMAN 1 Halmahera Timur
+                    </p>
+                  </div>
+
+                  <blockquote className="text-sm text-slate-600 leading-relaxed font-normal">
+                    &ldquo;{sambutanShort}&rdquo;
+                  </blockquote>
                 </div>
               </div>
-
-              <blockquote className="text-base text-slate-600 leading-relaxed font-normal">
-                &ldquo;{sambutanShort}&rdquo;
-              </blockquote>
             </div>
 
             <div className="pt-6 mt-6 border-t border-slate-100">

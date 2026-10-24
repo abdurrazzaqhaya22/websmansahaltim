@@ -68,7 +68,7 @@ export default async function ProfilPage() {
 
   return (
     <div className="bg-white min-h-screen py-16 sm:py-24 selection:bg-slate-900 selection:text-white">
-      <div className="max-w-3xl mx-auto px-6 sm:px-8">
+      <div className="max-w-4xl mx-auto px-6 sm:px-8">
         
         {/* Breadcrumb & Semboyan Kicker */}
         <div className="space-y-4 pb-8 border-b border-slate-100">
@@ -111,48 +111,54 @@ export default async function ProfilPage() {
           </div>
         </div>
 
-        {/* 1. SAMBUTAN KEPALA SEKOLAH (Medium / Coda Document Style) */}
-        <section id="sambutan" className="py-14 border-b border-slate-100 space-y-6">
-          <span className="text-xs font-bold tracking-[0.2em] text-slate-400 uppercase block">
-            Kepemimpinan Sekolah
-          </span>
-
-          <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900">
-            Sambutan Kepala Sekolah
-          </h2>
-
-          <div className="flex items-center gap-4 py-2">
-            <div className="relative w-16 h-16 rounded-full overflow-hidden border border-slate-200 shrink-0 bg-slate-100">
-              <Image
-                src={kepsekPhoto}
-                alt={kepsekName}
-                fill
-                sizes="64px"
-                className="object-cover"
-                priority
-              />
-            </div>
-            <div>
-              <h3 className="text-base font-bold text-slate-900 leading-tight">
-                {kepsekName}
-              </h3>
-              <p className="text-xs text-slate-500 mt-0.5">
-                Kepala {namaSekolah}
-              </p>
-            </div>
+        {/* 1. SAMBUTAN KEPALA SEKOLAH (Editorial Portrait 2-Column Layout) */}
+        <section id="sambutan" className="py-14 border-b border-slate-100 space-y-8">
+          <div>
+            <span className="text-xs font-bold tracking-[0.2em] text-slate-400 uppercase block">
+              Kepemimpinan Sekolah
+            </span>
+            <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900 mt-1">
+              Sambutan Kepala Sekolah
+            </h2>
           </div>
 
-          <div className="text-lg text-slate-600 leading-relaxed space-y-4 whitespace-pre-line font-normal">
-            {settings?.sambutan_kepsek || (
-              <>
-                <p>
-                  Puji syukur kita panjatkan ke hadirat Tuhan Yang Maha Esa atas limpahan rahmat dan karunia-Nya, sehingga SMA Negeri 1 Halmahera Timur terus dapat berdiri tegak menjadi kawah candradimuka bagi pembentukan karakter dan kecerdasan putra-putri bangsa.
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
+            {/* Kolom Kiri: Foto Besar Portrait & Identitas (lg:col-span-5) */}
+            <div className="lg:col-span-5 space-y-4">
+              <div className="relative w-full max-w-sm mx-auto lg:mx-0 aspect-[3/4] rounded-2xl overflow-hidden border border-slate-200 bg-slate-100 shadow-xs">
+                <Image
+                  src={kepsekPhoto}
+                  alt={kepsekName}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 360px"
+                  className="object-cover object-top"
+                  priority
+                />
+              </div>
+
+              <div className="text-left space-y-1">
+                <h3 className="text-lg sm:text-xl font-bold text-slate-900 leading-tight">
+                  {kepsekName}
+                </h3>
+                <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
+                  Kepala {namaSekolah}
                 </p>
-                <p>
-                  Di era transformasi global yang bergerak sangat cepat, kami meyakini bahwa pendidikan sejati tidak hanya mengukur kecakapan intelektual di atas kertas, tetapi juga menumbuhkan kepekaan nurani, integritas budi pekerti, dan daya juang yang pantang menyerah.
-                </p>
-              </>
-            )}
+              </div>
+            </div>
+
+            {/* Kolom Kanan: Teks Lengkap Sambutan (lg:col-span-7) */}
+            <div className="lg:col-span-7 text-base sm:text-lg text-slate-600 leading-relaxed space-y-5 whitespace-pre-line font-normal">
+              {settings?.sambutan_kepsek || (
+                <>
+                  <p>
+                    Puji syukur kita panjatkan ke hadirat Tuhan Yang Maha Esa atas limpahan rahmat dan karunia-Nya, sehingga SMA Negeri 1 Halmahera Timur terus dapat berdiri tegak menjadi kawah candradimuka bagi pembentukan karakter dan kecerdasan putra-putri bangsa.
+                  </p>
+                  <p>
+                    Di era transformasi global yang bergerak sangat cepat, kami meyakini bahwa pendidikan sejati tidak hanya mengukur kecakapan intelektual di atas kertas, tetapi juga menumbuhkan kepekaan nurani, integritas budi pekerti, dan daya juang yang pantang menyerah.
+                  </p>
+                </>
+              )}
+            </div>
           </div>
         </section>
 
