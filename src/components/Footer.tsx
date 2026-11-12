@@ -1,18 +1,50 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowUpRight } from "lucide-react";
-import type { Settings } from "@/types/database";
+import { ArrowUpRight, Handshake } from "lucide-react";
+import type { Settings, Mitra } from "@/types/database";
 
 interface FooterProps {
   settings: Settings | null;
+  mitraList?: Mitra[];
 }
 
-export function Footer({ settings }: FooterProps) {
+export function Footer({ settings, mitraList = [] }: FooterProps) {
   const currentYear = new Date().getFullYear();
 
   return (
     <footer className="bg-white border-t border-slate-100 mt-auto">
+      {/* Mitra / Supported By Section */}
+      {mitraList && mitraList.length > 0 && (
+        <div className="border-b border-slate-100 py-10 bg-slate-50/50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white border border-slate-200 text-slate-500 text-[11px] font-bold tracking-[0.15em] uppercase">
+              <Handshake className="w-3.5 h-3.5 text-slate-400" />
+              <span>Mitra Kerjasama & Didukung Oleh</span>
+            </div>
+
+            <div className="flex flex-wrap items-center justify-center gap-8 sm:gap-12">
+              {mitraList.map((m) => (
+                <div
+                  key={m.id}
+                  className="group relative flex items-center justify-center p-3 rounded-2xl bg-white border border-slate-200/80 shadow-2xs hover:border-slate-300 hover:shadow-xs transition-all"
+                  title={m.nama}
+                >
+                  <div className="relative w-28 sm:w-36 h-12">
+                    <Image
+                      src={m.logo_url}
+                      alt={m.nama}
+                      fill
+                      className="object-contain filter grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300"
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10">
           

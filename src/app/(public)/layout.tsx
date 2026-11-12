@@ -3,7 +3,7 @@ import { createClient } from "@/lib/supabase/server";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { AnnouncementPopup } from "@/components/AnnouncementPopup";
-import type { Settings, SpecialLink, Article } from "@/types/database";
+import type { Settings, SpecialLink, Article, Mitra } from "@/types/database";
 
 export const dynamic = "force-dynamic";
 
@@ -15,6 +15,7 @@ export default async function PublicLayout({
   let settings: Settings | null = null;
   let specialLinks: SpecialLink[] = [];
   let latestAnnouncement: Article | null = null;
+  let mitraList: Mitra[] = [];
 
   try {
     const supabase = await createClient();
@@ -48,6 +49,14 @@ export default async function PublicLayout({
       .maybeSingle();
 
     if (announcementData) latestAnnouncement = announcementData as Article;
+
+    // Fetch mitra logos
+    const { data: mitraData } = await supabase
+      .from("mitra")
+      .select("*")
+      .order("created_at", { ascending: true });
+
+    if (mitraData) mitraList = mitraData as Mitra[];
   } catch (err) {
     console.error("PublicLayout error:", err);
   }
@@ -57,7 +66,7 @@ export default async function PublicLayout({
       <Navbar specialLinks={specialLinks} />
       <AnnouncementPopup announcement={latestAnnouncement} />
       <main className="flex-1">{children}</main>
-      <Footer settings={settings} />
+      <Footer settings={settings} mitraList={mitraList} />
     </div>
   );
 }

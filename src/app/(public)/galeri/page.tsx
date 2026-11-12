@@ -6,7 +6,7 @@ import { GalleryLightbox } from "@/components/GalleryLightbox";
 import type { GalleryItem } from "@/types/database";
 
 export const metadata = {
-  title: "Galeri Foto Kegiatan & Kampus",
+  title: "Galeri & Dokumentasi Sekolah | SMAN 1 Halmahera Timur",
   description: "Dokumentasi visual kegiatan belajar mengajar dan fasilitas SMA Negeri 1 Halmahera Timur.",
 };
 
@@ -39,7 +39,7 @@ export default async function GaleriPage() {
           </div>
 
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-black tracking-tighter text-slate-900 leading-[1.05]">
-            Lensa Kampus & Kegiatan.
+            Galeri & Dokumentasi Sekolah.
           </h1>
 
           <p className="text-lg text-slate-500 max-w-2xl font-normal leading-relaxed">

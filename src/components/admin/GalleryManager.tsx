@@ -16,6 +16,7 @@ export function GalleryManager({ initialItems }: GalleryManagerProps) {
   const router = useRouter();
 
   const [judulFoto, setJudulFoto] = useState("");
+  const [albumName, setAlbumName] = useState("");
   const [deskripsi, setDeskripsi] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -25,6 +26,15 @@ export function GalleryManager({ initialItems }: GalleryManagerProps) {
   const [deletingId, setDeletingId] = useState<string | null>(null);
   const [errorMsg, setErrorMsg] = useState("");
   const [successMsg, setSuccessMsg] = useState("");
+
+  // Extract distinct album names from initialItems for quick suggestion
+  const existingAlbums = Array.from(
+    new Set(
+      initialItems
+        .map((i) => i.album_name?.trim())
+        .filter((a): a is string => Boolean(a))
+    )
+  );
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -78,7 +88,8 @@ export function GalleryManager({ initialItems }: GalleryManagerProps) {
       // Insert record to database
       const { error: dbErr } = await supabase.from("gallery").insert([
         {
-          judul_foto: judulFoto,
+          judul_foto: judulFoto.trim(),
+          album_name: albumName.trim() || null,
           deskripsi: deskripsi || null,
           image_url: finalImageUrl,
         },
@@ -88,6 +99,7 @@ export function GalleryManager({ initialItems }: GalleryManagerProps) {
 
       setSuccessMsg("Foto berhasil ditambahkan ke galeri!");
       setJudulFoto("");
+      setAlbumName("");
       setDeskripsi("");
       setImageUrl("");
       setSelectedFile(null);
@@ -142,7 +154,7 @@ export function GalleryManager({ initialItems }: GalleryManagerProps) {
         )}
 
         <form onSubmit={handleUploadSubmit} className="space-y-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div className="space-y-1.5">
               <label className="text-xs font-bold text-[#122238] block">
                 Judul Foto / Acara *
@@ -155,6 +167,25 @@ export function GalleryManager({ initialItems }: GalleryManagerProps) {
                 placeholder="Contoh: Upacara Hari Kemerdekaan RI Ke-81"
                 className="w-full px-3 py-2 text-xs bg-[#FAF9F5] border border-[#D5D2C8] rounded-lg focus:outline-none focus:border-[#122238] focus:bg-white"
               />
+            </div>
+
+            <div className="space-y-1.5">
+              <label className="text-xs font-bold text-[#122238] block">
+                Nama Album (Kategori)
+              </label>
+              <input
+                type="text"
+                list="album-list"
+                value={albumName}
+                onChange={(e) => setAlbumName(e.target.value)}
+                placeholder="Contoh: Ekstrakurikuler, Fasilitas, Kelulusan"
+                className="w-full px-3 py-2 text-xs bg-[#FAF9F5] border border-[#D5D2C8] rounded-lg focus:outline-none focus:border-[#122238] focus:bg-white"
+              />
+              <datalist id="album-list">
+                {existingAlbums.map((alb) => (
+                  <option key={alb} value={alb} />
+                ))}
+              </datalist>
             </div>
 
             <div className="space-y-1.5">
@@ -265,7 +296,12 @@ export function GalleryManager({ initialItems }: GalleryManagerProps) {
 
                 <div className="p-4 space-y-2 flex-1 flex flex-col justify-between">
                   <div>
-                    <h4 className="font-editorial text-sm font-bold text-[#122238] line-clamp-1">
+                    <div className="flex items-center gap-2">
+                      <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-slate-100 text-slate-700 uppercase">
+                        {item.album_name || "Umum"}
+                      </span>
+                    </div>
+                    <h4 className="font-editorial text-sm font-bold text-[#122238] line-clamp-1 mt-1">
                       {item.judul_foto}
                     </h4>
                     {item.deskripsi && (

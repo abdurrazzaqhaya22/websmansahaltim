@@ -45,6 +45,7 @@ export interface GalleryItem {
   judul_foto: string;
   image_url: string;
   deskripsi: string | null;
+  album_name?: string | null;
   created_at: string;
 }
 
@@ -55,5 +56,12 @@ export interface SpecialLink {
   icon: string;
   is_active: boolean;
   urutan: number;
+  created_at: string;
+}
+
+export interface Mitra {
+  id: string;
+  nama: string;
+  logo_url: string;
   created_at: string;
 }

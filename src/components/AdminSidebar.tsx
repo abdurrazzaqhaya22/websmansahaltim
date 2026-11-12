@@ -11,6 +11,7 @@ import {
   Users,
   Settings as SettingsIcon,
   Link2,
+  Handshake,
   LogOut,
   ExternalLink,
   Menu,
@@ -59,6 +60,11 @@ export function AdminSidebar({ userEmail }: AdminSidebarProps) {
       label: "6. Menu Khusus / Link",
       href: "/admin/special-links",
       icon: Link2,
+    },
+    {
+      label: "7. Mitra Kerjasama",
+      href: "/admin/mitra",
+      icon: Handshake,
     },
   ];
 
